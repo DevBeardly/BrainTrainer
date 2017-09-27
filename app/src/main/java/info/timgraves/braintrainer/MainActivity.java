@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         attempted = 0;
         userScore = "0/0";
         rightWrongTextView.setText("");
+        currentScoreTextView.setText(userScore);
         timeLeftTextView.setVisibility(View.INVISIBLE);
         promptTextView.setVisibility(View.INVISIBLE);
         currentScoreTextView.setVisibility(View.INVISIBLE);
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
 
-                timeLeftTextView.setText("0");
+                timeLeftTextView.setText("0s");
                 gameIsActive = false;
                 playAgainButton.setVisibility(View.VISIBLE);
                 rightWrongTextView.setText("Your score : " + userScore);
@@ -123,9 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void generateAnswer () {
 
-        // generates the prompt question, the correct answer, and incorrect answers
+        // Generates the prompt question, the correct answer, and incorrect answers,
         // assigns the answer values to the array and then to the appropriate buttons,
         // and keeps track of the location of the correct answer
+
+        answers.clear();
 
         Random rand = new Random();
 
@@ -163,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkAnswer(View view) {
 
-        // determine which button has been pressed, and then, if the game is active, check
+        // Determine which button has been pressed, and then, if the game is active, check
         // the button pressed against the location of the correct answer within the array.
         // Whether the user iscorrect is passed to the updateScore() method, and "Correct!"
         // or "Incorrect!" is displayed to the user. The array is then cleared, and the
@@ -180,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 updateScore(false);
             }
 
-            answers.clear();
             generateAnswer();
 
         }
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateScore(boolean correctAnswer) {
 
-        // receives a true or false indicator from the calling function which determines
+        // Receives a true or false indicator from the calling function which determines
         // whether the user's score is incremented or left alone, and increments the
         // number of attempts, then displays the current total score to the user
 
